@@ -1,0 +1,986 @@
+{
+  "world_anchor": {
+    "building_id": "HOME_SEESTRASSE_43",
+    "verified_ro": true,
+    "osm_way_id": "298358142",
+    "street": "Seestraße",
+    "housenumber": "43",
+    "lat_deg": 50.4030559,
+    "lon_deg": 8.8230358,
+    "alt_nhn_m": 146.04
+  },
+  "gbif_woelfersheim_birds": {
+    "Cyanistes caeruleus": {
+      "taxon_key": 2487879,
+      "species": "Cyanistes caeruleus",
+      "vernacular_de": "Blaumeise",
+      "total_count": 19,
+      "recent_count": 19,
+      "min_year": 2021,
+      "max_year": 2025,
+      "primary_habitat": "SIEDLUNGSRAUM",
+      "licenses_used": "CC_BY_4_0",
+      "verified_occ_count": 19,
+      "first_date": "2021-01-09T00:00",
+      "last_date": "2025-08-06T00:00",
+      "avg_dist_lake_m": 255.1
+    },
+    "Parus major": {
+      "taxon_key": 9705453,
+      "species": "Parus major",
+      "vernacular_de": "Kohlmeise",
+      "total_count": 20,
+      "recent_count": 20,
+      "min_year": 2021,
+      "max_year": 2025,
+      "primary_habitat": "SIEDLUNGSRAUM",
+      "licenses_used": "CC_BY_4_0",
+      "verified_occ_count": 20,
+      "first_date": "2021-01-09T00:00",
+      "last_date": "2025-08-06T00:00",
+      "avg_dist_lake_m": 274.4
+    },
+    "Hirundo rustica": {
+      "taxon_key": 9515886,
+      "species": "Hirundo rustica",
+      "vernacular_de": "Hirundo rustica",
+      "total_count": 5,
+      "recent_count": 5,
+      "min_year": 2021,
+      "max_year": 2023,
+      "primary_habitat": "COARSE_CORRIDOR",
+      "licenses_used": "CC_BY_4_0",
+      "verified_occ_count": 5,
+      "first_date": "2021-05-15T00:00",
+      "last_date": "2023-05-13T00:00",
+      "avg_dist_lake_m": 369.7
+    }
+  },
+  "subcircuit_metadata": {
+    "n_neurons": 1993,
+    "n_edges": 42311,
+    "pool_counts": {
+      "orn_ester": 298,
+      "orn_terpene": 0,
+      "orn_geosmin": 39,
+      "orn_co2": 0,
+      "orn_pheromone": 0,
+      "pn_ester": 12,
+      "pn_terpene": 0,
+      "pn_geosmin": 11,
+      "hrn": 0,
+      "trn": 0,
+      "grn_sugar": 0,
+      "grn_bitter": 0,
+      "vision_spectral": 120,
+      "looming": 592,
+      "jo_mechano": 100,
+      "kc": 160,
+      "dan_reward": 307,
+      "dan_punish": 16,
+      "mbon_gaba_glut": 44,
+      "mbon_ach": 52,
+      "lhln": 120,
+      "dn_steer": 4,
+      "dn_forward": 2,
+      "dn_backward": 4,
+      "dn_jump": 2,
+      "motor_feeding": 110
+    }
+  },
+  "runtime_summary": {
+    "total_wall_time_s": 272.03,
+    "baseline_ms_per_tick": 13.492,
+    "peak_rss_mb": 332.22,
+    "determinism_verified": true
+  },
+  "comparisons": {
+    "baseline_at_90s": {
+      "fly_total_escapes": 628,
+      "fly_total_captured": 23,
+      "flies_alive": 52,
+      "open_air_flies": 36,
+      "catches_by_species": {
+        "CYANISTES_CAERULEUS": 6,
+        "PARUS_MAJOR": 9,
+        "HIRUNDO_RUSTICA": 8
+      },
+      "misses_by_species": {
+        "CYANISTES_CAERULEUS": 2,
+        "PARUS_MAJOR": 3,
+        "HIRUNDO_RUSTICA": 2
+      },
+      "state_sha256": "edd7f208ea14cd62e1ea12818c55ce0e2f8352b4e5b80a6226098d66e2dcf0c2"
+    },
+    "exp2_fly_looming_ablation": {
+      "fly_total_escapes": 0,
+      "fly_total_captured": 27,
+      "delta_captured_vs_base90": 4,
+      "flies_alive": 67
+    },
+    "exp3_bird_vision_ablation": {
+      "fly_total_captured": 18,
+      "delta_captured_vs_base90": -5,
+      "bird_energy_final_j": {
+        "CYANISTES_CAERULEUS": 98.56,
+        "PARUS_MAJOR": 60.59,
+        "HIRUNDO_RUSTICA": 40.42
+      },
+      "bird_exhausted": {
+        "CYANISTES_CAERULEUS": 0,
+        "PARUS_MAJOR": 0,
+        "HIRUNDO_RUSTICA": 0
+      }
+    },
+    "exp4_determinism_sha256_match": true,
+    "exp4_no_swallow_release": {
+      "fly_total_captured": 15,
+      "open_air_flies_alive": 38,
+      "delta_open_air_vs_base90": 2,
+      "remaining_catches": {
+        "CYANISTES_CAERULEUS": 6,
+        "PARUS_MAJOR": 9
+      }
+    }
+  },
+  "experiments": {
+    "eco_exp_1_baseline_150s": {
+      "sim_time_s": 150.0,
+      "flies_alive": 56,
+      "fly_zones": {
+        "total": 56,
+        "indoor": 12,
+        "canopy": 7,
+        "open_air": 37
+      },
+      "fly_total_spawned": 84,
+      "fly_total_births": 50,
+      "fly_total_captured": 28,
+      "fly_total_starved": 0,
+      "fly_captures_by_species": {
+        "HIRUNDO_RUSTICA": 10,
+        "CYANISTES_CAERULEUS": 8,
+        "PARUS_MAJOR": 10
+      },
+      "fly_mean_energy_mj": 9.764,
+      "fly_total_escapes": 811,
+      "total_flywire_spikes": 75754041,
+      "state_sha256": "10bcdd64426b21e01bab35cb05a58ea2ce1ba09b4578cd047175d899319fd509",
+      "birds": {
+        "CYANISTES_CAERULEUS": {
+          "bird_id": "BM_01",
+          "common_name_de": "Blaumeise",
+          "scientific_name": "Cyanistes caeruleus",
+          "gbif_taxon_key": 2487879,
+          "catches": 8,
+          "missed_strikes": 2,
+          "strike_attempts": 10,
+          "strike_success_rate": 0.8,
+          "detections": 5011,
+          "energy_final_j": 97.87,
+          "energy_max_j": 100.0,
+          "energy_spent_j": 54.07,
+          "energy_gained_j": 100.0,
+          "net_energy_j": 45.93,
+          "exhausted_events": 0,
+          "flight_distance_m": 79.7,
+          "zone_time_s": {
+            "canopy": 146.4,
+            "edge_ground": 2.25,
+            "open_air": 1.35
+          },
+          "zone_share_pct": {
+            "canopy": 97.6,
+            "edge_ground": 1.5,
+            "open_air": 0.9
+          }
+        },
+        "PARUS_MAJOR": {
+          "bird_id": "KM_01",
+          "common_name_de": "Kohlmeise",
+          "scientific_name": "Parus major",
+          "gbif_taxon_key": 9705453,
+          "catches": 10,
+          "missed_strikes": 11,
+          "strike_attempts": 21,
+          "strike_success_rate": 0.476,
+          "detections": 4482,
+          "energy_final_j": 76.84,
+          "energy_max_j": 145.0,
+          "energy_spent_j": 141.16,
+          "energy_gained_j": 130.0,
+          "net_energy_j": -11.16,
+          "exhausted_events": 0,
+          "flight_distance_m": 448.2,
+          "zone_time_s": {
+            "canopy": 1.3,
+            "edge_ground": 137.5,
+            "open_air": 11.2
+          },
+          "zone_share_pct": {
+            "canopy": 0.9,
+            "edge_ground": 91.7,
+            "open_air": 7.5
+          }
+        },
+        "HIRUNDO_RUSTICA": {
+          "bird_id": "RS_01",
+          "common_name_de": "Rauchschwalbe",
+          "scientific_name": "Hirundo rustica",
+          "gbif_taxon_key": 9515886,
+          "catches": 10,
+          "missed_strikes": 3,
+          "strike_attempts": 13,
+          "strike_success_rate": 0.769,
+          "detections": 3690,
+          "energy_final_j": 146.6,
+          "energy_max_j": 160.0,
+          "energy_spent_j": 86.4,
+          "energy_gained_j": 135.0,
+          "net_energy_j": 48.6,
+          "exhausted_events": 0,
+          "flight_distance_m": 569.1,
+          "zone_time_s": {
+            "canopy": 0.9,
+            "edge_ground": 28.67,
+            "open_air": 120.43
+          },
+          "zone_share_pct": {
+            "canopy": 0.6,
+            "edge_ground": 19.1,
+            "open_air": 80.3
+          }
+        }
+      },
+      "experiment_id": "ECO_EXP_1_BASELINE_150S",
+      "duration_s": 150.0,
+      "seed": 42,
+      "looming_gain": 1.0,
+      "vision_gain": 1.0,
+      "wall_time_s": 80.953,
+      "ms_per_tick": 13.492,
+      "rss_mb": 317.57,
+      "checkpoints": {
+        "t_90s": {
+          "sim_time_s": 90.0,
+          "flies_alive": 52,
+          "fly_zones": {
+            "total": 52,
+            "indoor": 12,
+            "canopy": 4,
+            "open_air": 36
+          },
+          "fly_total_spawned": 75,
+          "fly_total_births": 41,
+          "fly_total_captured": 23,
+          "fly_total_starved": 0,
+          "fly_captures_by_species": {
+            "HIRUNDO_RUSTICA": 8,
+            "CYANISTES_CAERULEUS": 6,
+            "PARUS_MAJOR": 9
+          },
+          "fly_mean_energy_mj": 10.969,
+          "fly_total_escapes": 628,
+          "total_flywire_spikes": 43438476,
+          "state_sha256": "edd7f208ea14cd62e1ea12818c55ce0e2f8352b4e5b80a6226098d66e2dcf0c2",
+          "birds": {
+            "CYANISTES_CAERULEUS": {
+              "bird_id": "BM_01",
+              "common_name_de": "Blaumeise",
+              "scientific_name": "Cyanistes caeruleus",
+              "gbif_taxon_key": 2487879,
+              "catches": 6,
+              "missed_strikes": 2,
+              "strike_attempts": 8,
+              "strike_success_rate": 0.75,
+              "detections": 3028,
+              "energy_final_j": 95.85,
+              "energy_max_j": 100.0,
+              "energy_spent_j": 36.57,
+              "energy_gained_j": 75.0,
+              "net_energy_j": 38.43,
+              "exhausted_events": 0,
+              "flight_distance_m": 65.6,
+              "zone_time_s": {
+                "canopy": 86.4,
+                "edge_ground": 2.25,
+                "open_air": 1.35
+              },
+              "zone_share_pct": {
+                "canopy": 96.0,
+                "edge_ground": 2.5,
+                "open_air": 1.5
+              }
+            },
+            "PARUS_MAJOR": {
+              "bird_id": "KM_01",
+              "common_name_de": "Kohlmeise",
+              "scientific_name": "Parus major",
+              "gbif_taxon_key": 9705453,
+              "catches": 9,
+              "missed_strikes": 3,
+              "strike_attempts": 12,
+              "strike_success_rate": 0.75,
+              "detections": 2976,
+              "energy_final_j": 130.64,
+              "energy_max_j": 145.0,
+              "energy_spent_j": 74.36,
+              "energy_gained_j": 117.0,
+              "net_energy_j": 42.64,
+              "exhausted_events": 0,
+              "flight_distance_m": 218.3,
+              "zone_time_s": {
+                "canopy": 0.0,
+                "edge_ground": 87.48,
+                "open_air": 2.52
+              },
+              "zone_share_pct": {
+                "canopy": 0.0,
+                "edge_ground": 97.2,
+                "open_air": 2.8
+              }
+            },
+            "HIRUNDO_RUSTICA": {
+              "bird_id": "RS_01",
+              "common_name_de": "Rauchschwalbe",
+              "scientific_name": "Hirundo rustica",
+              "gbif_taxon_key": 9515886,
+              "catches": 8,
+              "missed_strikes": 2,
+              "strike_attempts": 10,
+              "strike_success_rate": 0.8,
+              "detections": 2156,
+              "energy_final_j": 147.98,
+              "energy_max_j": 160.0,
+              "energy_spent_j": 58.02,
+              "energy_gained_j": 108.0,
+              "net_energy_j": 49.98,
+              "exhausted_events": 0,
+              "flight_distance_m": 421.0,
+              "zone_time_s": {
+                "canopy": 0.9,
+                "edge_ground": 22.57,
+                "open_air": 66.52
+              },
+              "zone_share_pct": {
+                "canopy": 1.0,
+                "edge_ground": 25.1,
+                "open_air": 73.9
+              }
+            }
+          }
+        }
+      },
+      "perspective_sample_counts": {
+        "fly_samples": 2746,
+        "bird_samples": {
+          "BM_01": 985,
+          "KM_01": 1687,
+          "RS_01": 1519
+        }
+      }
+    },
+    "eco_exp_2_fly_looming_ablation_90s": {
+      "sim_time_s": 90.0,
+      "flies_alive": 67,
+      "fly_zones": {
+        "total": 67,
+        "indoor": 24,
+        "canopy": 20,
+        "open_air": 23
+      },
+      "fly_total_spawned": 94,
+      "fly_total_births": 60,
+      "fly_total_captured": 27,
+      "fly_total_starved": 0,
+      "fly_captures_by_species": {
+        "HIRUNDO_RUSTICA": 9,
+        "CYANISTES_CAERULEUS": 6,
+        "PARUS_MAJOR": 12
+      },
+      "fly_mean_energy_mj": 10.963,
+      "fly_total_escapes": 0,
+      "total_flywire_spikes": 43646754,
+      "state_sha256": "98e3c062f3769976503d56f489c61837f19a0915bf593d1eecfae9335d41f71d",
+      "birds": {
+        "CYANISTES_CAERULEUS": {
+          "bird_id": "BM_01",
+          "common_name_de": "Blaumeise",
+          "scientific_name": "Cyanistes caeruleus",
+          "gbif_taxon_key": 2487879,
+          "catches": 6,
+          "missed_strikes": 19,
+          "strike_attempts": 25,
+          "strike_success_rate": 0.24,
+          "detections": 549,
+          "energy_final_j": 43.26,
+          "energy_max_j": 100.0,
+          "energy_spent_j": 93.45,
+          "energy_gained_j": 75.0,
+          "net_energy_j": -18.45,
+          "exhausted_events": 0,
+          "flight_distance_m": 318.1,
+          "zone_time_s": {
+            "canopy": 50.72,
+            "edge_ground": 27.1,
+            "open_air": 12.18
+          },
+          "zone_share_pct": {
+            "canopy": 56.4,
+            "edge_ground": 30.1,
+            "open_air": 13.5
+          }
+        },
+        "PARUS_MAJOR": {
+          "bird_id": "KM_01",
+          "common_name_de": "Kohlmeise",
+          "scientific_name": "Parus major",
+          "gbif_taxon_key": 9705453,
+          "catches": 12,
+          "missed_strikes": 8,
+          "strike_attempts": 20,
+          "strike_success_rate": 0.6,
+          "detections": 2263,
+          "energy_final_j": 140.78,
+          "energy_max_j": 145.0,
+          "energy_spent_j": 103.22,
+          "energy_gained_j": 156.0,
+          "net_energy_j": 52.78,
+          "exhausted_events": 0,
+          "flight_distance_m": 344.6,
+          "zone_time_s": {
+            "canopy": 0.27,
+            "edge_ground": 80.05,
+            "open_air": 9.68
+          },
+          "zone_share_pct": {
+            "canopy": 0.3,
+            "edge_ground": 88.9,
+            "open_air": 10.7
+          }
+        },
+        "HIRUNDO_RUSTICA": {
+          "bird_id": "RS_01",
+          "common_name_de": "Rauchschwalbe",
+          "scientific_name": "Hirundo rustica",
+          "gbif_taxon_key": 9515886,
+          "catches": 9,
+          "missed_strikes": 3,
+          "strike_attempts": 12,
+          "strike_success_rate": 0.75,
+          "detections": 1550,
+          "energy_final_j": 145.22,
+          "energy_max_j": 160.0,
+          "energy_spent_j": 74.28,
+          "energy_gained_j": 121.5,
+          "net_energy_j": 47.22,
+          "exhausted_events": 0,
+          "flight_distance_m": 600.4,
+          "zone_time_s": {
+            "canopy": 1.08,
+            "edge_ground": 25.1,
+            "open_air": 63.82
+          },
+          "zone_share_pct": {
+            "canopy": 1.2,
+            "edge_ground": 27.9,
+            "open_air": 70.9
+          }
+        }
+      },
+      "experiment_id": "ECO_EXP_2_FLY_LOOMING_ABLATION_90S",
+      "duration_s": 90.0,
+      "seed": 42,
+      "looming_gain": 0.0,
+      "vision_gain": 1.0,
+      "wall_time_s": 46.914,
+      "ms_per_tick": 13.032,
+      "rss_mb": 332.22,
+      "checkpoints": {}
+    },
+    "eco_exp_3_bird_vision_degraded_90s": {
+      "sim_time_s": 90.0,
+      "flies_alive": 70,
+      "fly_zones": {
+        "total": 70,
+        "indoor": 18,
+        "canopy": 16,
+        "open_air": 36
+      },
+      "fly_total_spawned": 88,
+      "fly_total_births": 54,
+      "fly_total_captured": 18,
+      "fly_total_starved": 0,
+      "fly_captures_by_species": {
+        "HIRUNDO_RUSTICA": 2,
+        "CYANISTES_CAERULEUS": 7,
+        "PARUS_MAJOR": 9
+      },
+      "fly_mean_energy_mj": 10.956,
+      "fly_total_escapes": 329,
+      "total_flywire_spikes": 59303504,
+      "state_sha256": "95b5735548dead56f8e733c92d5bbaaa53f10e79ced4bdf55b4ee1dca6956539",
+      "birds": {
+        "CYANISTES_CAERULEUS": {
+          "bird_id": "BM_01",
+          "common_name_de": "Blaumeise",
+          "scientific_name": "Cyanistes caeruleus",
+          "gbif_taxon_key": 2487879,
+          "catches": 7,
+          "missed_strikes": 2,
+          "strike_attempts": 9,
+          "strike_success_rate": 0.778,
+          "detections": 144,
+          "energy_final_j": 98.56,
+          "energy_max_j": 100.0,
+          "energy_spent_j": 44.54,
+          "energy_gained_j": 87.5,
+          "net_energy_j": 42.96,
+          "exhausted_events": 0,
+          "flight_distance_m": 126.6,
+          "zone_time_s": {
+            "canopy": 79.53,
+            "edge_ground": 4.25,
+            "open_air": 6.23
+          },
+          "zone_share_pct": {
+            "canopy": 88.4,
+            "edge_ground": 4.7,
+            "open_air": 6.9
+          }
+        },
+        "PARUS_MAJOR": {
+          "bird_id": "KM_01",
+          "common_name_de": "Kohlmeise",
+          "scientific_name": "Parus major",
+          "gbif_taxon_key": 9705453,
+          "catches": 9,
+          "missed_strikes": 6,
+          "strike_attempts": 15,
+          "strike_success_rate": 0.6,
+          "detections": 282,
+          "energy_final_j": 60.59,
+          "energy_max_j": 145.0,
+          "energy_spent_j": 144.41,
+          "energy_gained_j": 117.0,
+          "net_energy_j": -27.41,
+          "exhausted_events": 0,
+          "flight_distance_m": 611.2,
+          "zone_time_s": {
+            "canopy": 0.0,
+            "edge_ground": 56.77,
+            "open_air": 33.22
+          },
+          "zone_share_pct": {
+            "canopy": 0.0,
+            "edge_ground": 63.1,
+            "open_air": 36.9
+          }
+        },
+        "HIRUNDO_RUSTICA": {
+          "bird_id": "RS_01",
+          "common_name_de": "Rauchschwalbe",
+          "scientific_name": "Hirundo rustica",
+          "gbif_taxon_key": 9515886,
+          "catches": 2,
+          "missed_strikes": 3,
+          "strike_attempts": 5,
+          "strike_success_rate": 0.4,
+          "detections": 83,
+          "energy_final_j": 40.42,
+          "energy_max_j": 160.0,
+          "energy_spent_j": 84.58,
+          "energy_gained_j": 27.0,
+          "net_energy_j": -57.58,
+          "exhausted_events": 0,
+          "flight_distance_m": 867.1,
+          "zone_time_s": {
+            "canopy": 2.47,
+            "edge_ground": 24.45,
+            "open_air": 63.07
+          },
+          "zone_share_pct": {
+            "canopy": 2.8,
+            "edge_ground": 27.2,
+            "open_air": 70.1
+          }
+        }
+      },
+      "experiment_id": "ECO_EXP_3_BIRD_VISION_DEGRADED_90S",
+      "duration_s": 90.0,
+      "seed": 42,
+      "looming_gain": 1.0,
+      "vision_gain": 0.3,
+      "wall_time_s": 51.524,
+      "ms_per_tick": 14.312,
+      "rss_mb": 331.73,
+      "checkpoints": {}
+    },
+    "eco_exp_4a_determinism_repeat_90s": {
+      "sim_time_s": 90.0,
+      "flies_alive": 52,
+      "fly_zones": {
+        "total": 52,
+        "indoor": 12,
+        "canopy": 4,
+        "open_air": 36
+      },
+      "fly_total_spawned": 75,
+      "fly_total_births": 41,
+      "fly_total_captured": 23,
+      "fly_total_starved": 0,
+      "fly_captures_by_species": {
+        "HIRUNDO_RUSTICA": 8,
+        "CYANISTES_CAERULEUS": 6,
+        "PARUS_MAJOR": 9
+      },
+      "fly_mean_energy_mj": 10.969,
+      "fly_total_escapes": 628,
+      "total_flywire_spikes": 43438476,
+      "state_sha256": "edd7f208ea14cd62e1ea12818c55ce0e2f8352b4e5b80a6226098d66e2dcf0c2",
+      "birds": {
+        "CYANISTES_CAERULEUS": {
+          "bird_id": "BM_01",
+          "common_name_de": "Blaumeise",
+          "scientific_name": "Cyanistes caeruleus",
+          "gbif_taxon_key": 2487879,
+          "catches": 6,
+          "missed_strikes": 2,
+          "strike_attempts": 8,
+          "strike_success_rate": 0.75,
+          "detections": 3028,
+          "energy_final_j": 95.85,
+          "energy_max_j": 100.0,
+          "energy_spent_j": 36.57,
+          "energy_gained_j": 75.0,
+          "net_energy_j": 38.43,
+          "exhausted_events": 0,
+          "flight_distance_m": 65.6,
+          "zone_time_s": {
+            "canopy": 86.4,
+            "edge_ground": 2.25,
+            "open_air": 1.35
+          },
+          "zone_share_pct": {
+            "canopy": 96.0,
+            "edge_ground": 2.5,
+            "open_air": 1.5
+          }
+        },
+        "PARUS_MAJOR": {
+          "bird_id": "KM_01",
+          "common_name_de": "Kohlmeise",
+          "scientific_name": "Parus major",
+          "gbif_taxon_key": 9705453,
+          "catches": 9,
+          "missed_strikes": 3,
+          "strike_attempts": 12,
+          "strike_success_rate": 0.75,
+          "detections": 2976,
+          "energy_final_j": 130.64,
+          "energy_max_j": 145.0,
+          "energy_spent_j": 74.36,
+          "energy_gained_j": 117.0,
+          "net_energy_j": 42.64,
+          "exhausted_events": 0,
+          "flight_distance_m": 218.3,
+          "zone_time_s": {
+            "canopy": 0.0,
+            "edge_ground": 87.48,
+            "open_air": 2.52
+          },
+          "zone_share_pct": {
+            "canopy": 0.0,
+            "edge_ground": 97.2,
+            "open_air": 2.8
+          }
+        },
+        "HIRUNDO_RUSTICA": {
+          "bird_id": "RS_01",
+          "common_name_de": "Rauchschwalbe",
+          "scientific_name": "Hirundo rustica",
+          "gbif_taxon_key": 9515886,
+          "catches": 8,
+          "missed_strikes": 2,
+          "strike_attempts": 10,
+          "strike_success_rate": 0.8,
+          "detections": 2156,
+          "energy_final_j": 147.98,
+          "energy_max_j": 160.0,
+          "energy_spent_j": 58.02,
+          "energy_gained_j": 108.0,
+          "net_energy_j": 49.98,
+          "exhausted_events": 0,
+          "flight_distance_m": 421.0,
+          "zone_time_s": {
+            "canopy": 0.9,
+            "edge_ground": 22.57,
+            "open_air": 66.52
+          },
+          "zone_share_pct": {
+            "canopy": 1.0,
+            "edge_ground": 25.1,
+            "open_air": 73.9
+          }
+        }
+      },
+      "experiment_id": "ECO_EXP_4A_DETERMINISM_REPEAT_90S",
+      "duration_s": 90.0,
+      "seed": 42,
+      "looming_gain": 1.0,
+      "vision_gain": 1.0,
+      "wall_time_s": 43.85,
+      "ms_per_tick": 12.181,
+      "rss_mb": 331.71,
+      "checkpoints": {}
+    },
+    "eco_exp_4b_no_swallow_guild_90s": {
+      "sim_time_s": 90.0,
+      "flies_alive": 68,
+      "fly_zones": {
+        "total": 68,
+        "indoor": 12,
+        "canopy": 18,
+        "open_air": 38
+      },
+      "fly_total_spawned": 83,
+      "fly_total_births": 49,
+      "fly_total_captured": 15,
+      "fly_total_starved": 0,
+      "fly_captures_by_species": {
+        "CYANISTES_CAERULEUS": 6,
+        "PARUS_MAJOR": 9
+      },
+      "fly_mean_energy_mj": 10.514,
+      "fly_total_escapes": 168,
+      "total_flywire_spikes": 51329519,
+      "state_sha256": "e4de467b7c7195d38ba235883bfe4166a7dc2f940776833263ac58a144bebae7",
+      "birds": {
+        "CYANISTES_CAERULEUS": {
+          "bird_id": "BM_01",
+          "common_name_de": "Blaumeise",
+          "scientific_name": "Cyanistes caeruleus",
+          "gbif_taxon_key": 2487879,
+          "catches": 6,
+          "missed_strikes": 2,
+          "strike_attempts": 8,
+          "strike_success_rate": 0.75,
+          "detections": 3263,
+          "energy_final_j": 95.69,
+          "energy_max_j": 100.0,
+          "energy_spent_j": 35.4,
+          "energy_gained_j": 75.0,
+          "net_energy_j": 39.6,
+          "exhausted_events": 0,
+          "flight_distance_m": 62.0,
+          "zone_time_s": {
+            "canopy": 86.68,
+            "edge_ground": 1.85,
+            "open_air": 1.47
+          },
+          "zone_share_pct": {
+            "canopy": 96.3,
+            "edge_ground": 2.1,
+            "open_air": 1.6
+          }
+        },
+        "PARUS_MAJOR": {
+          "bird_id": "KM_01",
+          "common_name_de": "Kohlmeise",
+          "scientific_name": "Parus major",
+          "gbif_taxon_key": 9705453,
+          "catches": 9,
+          "missed_strikes": 7,
+          "strike_attempts": 16,
+          "strike_success_rate": 0.562,
+          "detections": 2578,
+          "energy_final_j": 111.9,
+          "energy_max_j": 145.0,
+          "energy_spent_j": 93.1,
+          "energy_gained_j": 117.0,
+          "net_energy_j": 23.9,
+          "exhausted_events": 0,
+          "flight_distance_m": 293.5,
+          "zone_time_s": {
+            "canopy": 0.3,
+            "edge_ground": 81.68,
+            "open_air": 8.03
+          },
+          "zone_share_pct": {
+            "canopy": 0.3,
+            "edge_ground": 90.8,
+            "open_air": 8.9
+          }
+        }
+      },
+      "experiment_id": "ECO_EXP_4B_NO_SWALLOW_GUILD_90S",
+      "duration_s": 90.0,
+      "seed": 42,
+      "looming_gain": 1.0,
+      "vision_gain": 1.0,
+      "wall_time_s": 48.473,
+      "ms_per_tick": 13.465,
+      "rss_mb": 331.09,
+      "checkpoints": {}
+    }
+  },
+  "epistemic_chambers": [
+    {
+      "experiment_id": "ECO_CHAMBER_01_RAW_DATA",
+      "chamber": "RAW_DATA",
+      "evidence_grade": "MEASURED_OBSERVATION",
+      "statement": "[EMPIRICAL_GBIF_WOELFERSHEIM][EMPIRICAL_CONNECTOME] Read-Only-verifizierte Datenbasis: Hausanker Seestraße 43, reale GBIF-Vorkommen in Wölfersheim (Cyanistes caeruleus n=19, Parus major n=20, Hirundo rustica n=5) sowie der unveränderte FlyWire-v783-Subgraph (1.993 Neurone, 42.311 echte synaptische Kanten).",
+      "metrics": {
+        "home_anchor_verified_ro": true,
+        "home_alt_nhn_m": 146.04,
+        "cyanistes_occ": 19,
+        "parus_occ": 20,
+        "hirundo_occ": 5,
+        "subcircuit_neurons": 1993,
+        "subcircuit_edges": 42311
+      }
+    },
+    {
+      "experiment_id": "ECO_CHAMBER_02_MECHANISTIC_HYPOTHESIS",
+      "chamber": "HYPOTHESIS",
+      "evidence_grade": "CONFIRMED_SOFTWARE_PROPERTY",
+      "statement": "[MODEL_ASSUMPTION][EMPIRICAL_ORNITHOLOGY] Mechanistische Hypothese: Durch artgetrennte Morphologie, Blickfeld/Winkelauflösung, Strahl-Sichtlinie (Haus/Laub), Prop-Nav vs. Schwirren und echte 3D-CPA-Abfanggeometrie entsteht stabile Nischentrennung ohne vorprogrammierte Fangwahrscheinlichkeiten.",
+      "metrics": {
+        "n_species": 3,
+        "non_scripted_cpa": true
+      }
+    },
+    {
+      "experiment_id": "ECO_CHAMBER_03_ABLATION_PREDICTION",
+      "chamber": "PREDICTION",
+      "evidence_grade": "CONFIRMED_SOFTWARE_PROPERTY",
+      "statement": "[MODEL_ASSUMPTION] Vorhersage vor Ablation: Ausschalten von LC4/LPLC2 -> DNp01 eliminiert Fluchtmanöver (Eco-Exp 2); 30% Vogel-Visus reduziert Jagderfolg (Eco-Exp 3); Entfernen der Rauchschwalbe entlastet den freien Luftraum (Eco-Exp 4b).",
+      "metrics": {
+        "baseline_90s_escapes": 628
+      }
+    },
+    {
+      "experiment_id": "ECO_CHAMBER_04_EMERGENT_OBSERVATION",
+      "chamber": "OBSERVATION",
+      "evidence_grade": "MEASURED_OBSERVATION",
+      "statement": "[MEASURED] Gemessene 150-s-Ökosystemdynamik: Echte Fänge und Fehlschläge aller 3 Vogelarten, aktive Fliegen-Geburten, Schutz im Küchen-Refugium sowie über zehn Millionen reale FlyWire-Spikes.",
+      "metrics": {
+        "total_flywire_spikes_150s": 75754041,
+        "fly_births_150s": 50,
+        "fly_captured_150s": 28,
+        "fly_starved_150s": 0,
+        "final_flies_indoor": 12,
+        "final_flies_canopy": 7,
+        "final_flies_open_air": 37,
+        "blaumeise_catches": 8,
+        "blaumeise_misses": 2,
+        "blaumeise_canopy_pct": 97.6,
+        "kohlmeise_catches": 10,
+        "kohlmeise_misses": 11,
+        "kohlmeise_edge_pct": 91.7,
+        "rauchschwalbe_catches": 10,
+        "rauchschwalbe_misses": 3,
+        "rauchschwalbe_open_pct": 80.3
+      }
+    },
+    {
+      "experiment_id": "ECO_CHAMBER_05_SCALING_DEVIATION",
+      "chamber": "DEVIATION",
+      "evidence_grade": "QUANTIFIED_DEVIATION",
+      "statement": "[MODEL_ASSUMPTION] Explizite Abweichungs- & Modellgrenzen: (1) Vogel-Energiebudgets (100–160 J, 12,5–13,5 J pro Fliege) sind zeitskaliert, um innerhalb von 90–150 s echte Hunger-Sättigungs-Zyklen abzubilden; (2) FlyWire-v783 nutzt statische W_eco (Gewichtsskala 0,058) ohne Langzeitplastizität; (3) Baumkronen-Geometrie ist lokal modelliert, nicht per LiDAR eingemessen; (4) Kein Bewusstseinsanspruch.",
+      "metrics": {
+        "bird_energy_scale_j": {
+          "BM": 100.0,
+          "KM": 145.0,
+          "RS": 160.0
+        },
+        "synaptic_scale": 0.058,
+        "lif_substeps_per_tick": 2
+      }
+    },
+    {
+      "experiment_id": "ECO_CHAMBER_06_CONFIRMED_CLOSED_LOOP",
+      "chamber": "CONFIRMED_RESULT",
+      "evidence_grade": "CONFIRMED_SOFTWARE_PROPERTY",
+      "statement": "[CONFIRMED] Bit-exakter SHA-256-Determinismus (Eco-Exp 4a), Hardwarebudget (< 25 ms/Tick, < 350 MB RSS) sowie kausale Empfindlichkeit gegenüber Fliegen-Looming (Eco-Exp 2), Vogel-Visus (Eco-Exp 3) und Rauchschwalben-Gildenwegfall (Eco-Exp 4b) bestätigt.",
+      "metrics": {
+        "baseline_ms_per_tick": 13.492,
+        "peak_rss_mb": 317.57,
+        "determinism_sha256_match": true,
+        "baseline_90s_sha256": "edd7f208ea14cd62e1ea12818c55ce0e2f8352b4e5b80a6226098d66e2dcf0c2",
+        "exp2_fly_looming_ablation": {
+          "fly_total_escapes": 0,
+          "fly_total_captured": 27,
+          "delta_captured_vs_base90": 4,
+          "flies_alive": 67
+        },
+        "exp3_bird_vision_ablation": {
+          "fly_total_captured": 18,
+          "delta_captured_vs_base90": -5,
+          "bird_energy_final_j": {
+            "CYANISTES_CAERULEUS": 98.56,
+            "PARUS_MAJOR": 60.59,
+            "HIRUNDO_RUSTICA": 40.42
+          },
+          "bird_exhausted": {
+            "CYANISTES_CAERULEUS": 0,
+            "PARUS_MAJOR": 0,
+            "HIRUNDO_RUSTICA": 0
+          }
+        },
+        "exp4_no_swallow_release": {
+          "fly_total_captured": 15,
+          "open_air_flies_alive": 38,
+          "delta_open_air_vs_base90": 2,
+          "remaining_catches": {
+            "CYANISTES_CAERULEUS": 6,
+            "PARUS_MAJOR": 9
+          }
+        }
+      }
+    },
+    {
+      "experiment_id": "ECO_CHAMBER_07_REJECTED_ALTERNATIVES",
+      "chamber": "REJECTED_APPROACH",
+      "evidence_grade": "REFUTED_APPROACH",
+      "statement": "[REFUTED] Verworfene Ansätze: (a) Skriptierte Fangwahrscheinlichkeiten p_catch, (b) Orakel-Globalkoordinaten im Vogelmodell, (c) Skalar-LOS-Schleife pro Paar (37,0 ms/Tick > Echtzeitbudget), und (d) weite Kronen-Patrouille (rx=5,5 m) mit aktiver Jagdabstoßung (>0,72 Dichte), wodurch die Blaumeise in der ersten Testversion 0 Kronenfänge erzielte.",
+      "metrics": {
+        "rejected_scalar_ms_per_tick": 37.0,
+        "calibrated_bm_patrol_rx_m": 2.1
+      }
+    }
+  ],
+  "protected_core_integrity": {
+    "protected_code_and_db_intact": true,
+    "pre": {
+      "luanti_file_count": 817,
+      "luanti_latest_mtime": 1795042601.982,
+      "luanti_latest_file": "C:\\Users\\Ulric\\.gemini\\antigravity\\scratch\\SIMALITAET_LUANTI\\data\\world_memory\\spatial_core.sqlite3-wal",
+      "luanti_code_latest_mtime": 1795022995.943,
+      "luanti_code_latest_file": "C:\\Users\\Ulric\\.gemini\\antigravity\\scratch\\SIMALITAET_LUANTI\\verify_3d_visual_rendering.py",
+      "woelfersheim_db_sha256": "8390469fefffb7ffe5f0db1a9a461a805ce5d699f30344d7fa17e179798dc34c",
+      "biodiv_db_sha256": "0fd92cebe7c18b8ade38263979acb27217662fe81f3dfcc18d447786d8b49c67"
+    },
+    "post": {
+      "luanti_file_count": 817,
+      "luanti_latest_mtime": 1795042601.982,
+      "luanti_latest_file": "C:\\Users\\Ulric\\.gemini\\antigravity\\scratch\\SIMALITAET_LUANTI\\data\\world_memory\\spatial_core.sqlite3-wal",
+      "luanti_code_latest_mtime": 1795022995.943,
+      "luanti_code_latest_file": "C:\\Users\\Ulric\\.gemini\\antigravity\\scratch\\SIMALITAET_LUANTI\\verify_3d_visual_rendering.py",
+      "woelfersheim_db_sha256": "8390469fefffb7ffe5f0db1a9a461a805ce5d699f30344d7fa17e179798dc34c",
+      "biodiv_db_sha256": "0fd92cebe7c18b8ade38263979acb27217662fe81f3dfcc18d447786d8b49c67"
+    },
+    "audit_events": [
+      "SQLITE_RO_OPEN:grossgemeinde_woelfersheim.sqlite3",
+      "SQLITE_RO_OPEN:simalitaet_biodiversitaet.sqlite3"
+    ]
+  },
+  "generated_images": {
+    "world_3d_and_niches": "C:\\Users\\Ulric\\.gemini\\antigravity\\scratch\\SIMALITAET_FLY_LAB\\results\\ecosystem_world_3d_and_niches.png",
+    "world_3d_and_niches_artifact": "C:\\Users\\Ulric\\.gemini\\antigravity\\brain\\fcf64b6a-aa55-49c4-9aac-05bbe2d54441\\ecosystem_world_3d_and_niches.png",
+    "perspectives_and_neural": "C:\\Users\\Ulric\\.gemini\\antigravity\\scratch\\SIMALITAET_FLY_LAB\\results\\ecosystem_perspectives_and_neural.png",
+    "perspectives_and_neural_artifact": "C:\\Users\\Ulric\\.gemini\\antigravity\\brain\\fcf64b6a-aa55-49c4-9aac-05bbe2d54441\\ecosystem_perspectives_and_neural.png",
+    "population_dynamics_and_experiments": "C:\\Users\\Ulric\\.gemini\\antigravity\\scratch\\SIMALITAET_FLY_LAB\\results\\ecosystem_population_dynamics_and_experiments.png",
+    "population_dynamics_and_experiments_artifact": "C:\\Users\\Ulric\\.gemini\\antigravity\\brain\\fcf64b6a-aa55-49c4-9aac-05bbe2d54441\\ecosystem_population_dynamics_and_experiments.png"
+  }
+        }
