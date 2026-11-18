@@ -1,0 +1,39 @@
+{
+  "schema_version": "1.0",
+  "generated_utc": "2026-11-18T21:10:04+00:00",
+  "primary_connectome": "FlyWire FAFB v783 (Drosophila melanogaster adult female whole brain)",
+  "secondary_connectome_adapter": "MaleCNS male-cns:v1.0 (Janelia FlyEM / Berg et al., CC BY 4.0, neuprint.janelia.org)",
+  "biomechanics_reference": "NeuroMechFly v2 / FlyGym 2.1.1 (Wang-Chen et al., Nature Methods 2024, Apache-2.0) + MuJoCo 3.16.0 (Apache-2.0)",
+  "files": [
+    {
+      "dataset_id": "flywire_v783_completeness",
+      "filename": "Completeness_783.csv",
+      "local_path": "C:\\Users\\Ulric\\.gemini\\antigravity\\scratch\\SIMALITAET_FLY_LAB\\cache\\flywire_v783\\Completeness_783.csv",
+      "url": "https://raw.githubusercontent.com/philshiu/Drosophila_brain_model/main/Completeness_783.csv",
+      "bytes": 3327347,
+      "sha256": "bbb847a4cc2caaa7a16349722d220c087317b946d148d4d592d94d250617a311",
+      "license": "CC BY 4.0 (FlyWire) / MIT (Shiu et al. 2024 wrapper)",
+      "citation": "Shiu et al., Nature 634, 210-219 (2024); Dorkenwald et al., Nature 634, 124-138 (2024)"
+    },
+    {
+      "dataset_id": "flywire_v783_connectivity",
+      "filename": "Connectivity_783.parquet",
+      "local_path": "C:\\Users\\Ulric\\.gemini\\antigravity\\scratch\\SIMALITAET_FLY_LAB\\cache\\flywire_v783\\Connectivity_783.parquet",
+      "url": "https://raw.githubusercontent.com/philshiu/Drosophila_brain_model/main/Connectivity_783.parquet",
+      "bytes": 100804642,
+      "sha256": "efeb23fb99098e9c390f6869969b2a121a2ee92c833cfc45ecb2c1d8e1af0347",
+      "license": "CC BY 4.0 (FlyWire v783 Connectome)",
+      "citation": "Dorkenwald et al., Nature 634, 124-138 (2024); Zenodo 10676866"
+    },
+    {
+      "dataset_id": "flywire_v783_annotations",
+      "filename": "Supplemental_file1_neuron_annotations.tsv",
+      "local_path": "C:\\Users\\Ulric\\.gemini\\antigravity\\scratch\\SIMALITAET_FLY_LAB\\cache\\flywire_v783\\Supplemental_file1_neuron_annotations.tsv",
+      "url": "https://raw.githubusercontent.com/flyconnectome/flywire_annotations/main/supplemental_files/Supplemental_file1_neuron_annotations.tsv",
+      "bytes": 31720298,
+      "sha256": "b214970b55d2fbe0853bba536fdcb9e28730f4eb7ab06f600491df795da683cd",
+      "license": "CC BY 4.0 (Schlegel et al., Nature 2024)",
+      "citation": "Schlegel et al., Nature 634, 139-152 (2024)"
+    }
+  ]
+}

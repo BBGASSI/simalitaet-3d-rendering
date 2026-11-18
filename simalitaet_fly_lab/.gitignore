@@ -1,0 +1,12 @@
+# SIMALITAET_FLY_LAB .gitignore
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+cache/
+*.parquet
+*.tsv
+*.sqlite3
+*.sqlite3-wal
+*.sqlite3-shm
+*.log
