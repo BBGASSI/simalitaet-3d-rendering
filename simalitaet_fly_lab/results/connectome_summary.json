@@ -1,0 +1,162 @@
+{
+  "dataset_id": "flywire_fafb_v783",
+  "n_neurons_completeness": 138639,
+  "n_completed_true": 138639,
+  "n_edges": 15091983,
+  "total_chemical_synapses": 54492922,
+  "n_annotation_rows": 139248,
+  "n_matched_annotations": 138625,
+  "super_class_counts": {
+    "central": 32379,
+    "visual_projection": 8038,
+    "endocrine": 76,
+    "descending": 1299,
+    "optic": 77530,
+    "motor": 110,
+    "visual_centrifugal": 524,
+    "sensory": 16352,
+    "ascending": 1736,
+    "sensory_ascending": 581
+  },
+  "top_nt_counts": {
+    "acetylcholine": 86025,
+    "glutamate": 24858,
+    "gaba": 19147,
+    "serotonin": 2201,
+    "dopamine": 5905,
+    "octopamine": 210,
+    "unknown": 279
+  },
+  "functional_pools": {
+    "orn_ester": {
+      "all": 298,
+      "left": 153,
+      "right": 145
+    },
+    "orn_terpene": {
+      "all": 39,
+      "left": 21,
+      "right": 18
+    },
+    "orn_geosmin": {
+      "all": 39,
+      "left": 16,
+      "right": 22
+    },
+    "orn_co2": {
+      "all": 67,
+      "left": 34,
+      "right": 33
+    },
+    "orn_pheromone": {
+      "all": 126,
+      "left": 60,
+      "right": 66
+    },
+    "pn_ester": {
+      "all": 12,
+      "left": 6,
+      "right": 6
+    },
+    "pn_terpene": {
+      "all": 2,
+      "left": 1,
+      "right": 1
+    },
+    "pn_geosmin": {
+      "all": 11,
+      "left": 5,
+      "right": 6
+    },
+    "hrn": {
+      "all": 74,
+      "left": 39,
+      "right": 35
+    },
+    "trn": {
+      "all": 29,
+      "left": 13,
+      "right": 16
+    },
+    "grn_sugar": {
+      "all": 163,
+      "left": 87,
+      "right": 76
+    },
+    "grn_bitter": {
+      "all": 62,
+      "left": 30,
+      "right": 32
+    },
+    "vision_spectral": {
+      "all": 904,
+      "left": 457,
+      "right": 447
+    },
+    "looming": {
+      "all": 592,
+      "left": 305,
+      "right": 287
+    },
+    "jo_mechano": {
+      "all": 1091,
+      "left": 582,
+      "right": 509
+    },
+    "kc": {
+      "all": 5177,
+      "left": 2580,
+      "right": 2597
+    },
+    "dan_reward": {
+      "all": 307,
+      "left": 154,
+      "right": 153
+    },
+    "dan_punish": {
+      "all": 16,
+      "left": 8,
+      "right": 8
+    },
+    "mbon_gaba_glut": {
+      "all": 44,
+      "left": 21,
+      "right": 23
+    },
+    "mbon_ach": {
+      "all": 52,
+      "left": 27,
+      "right": 25
+    },
+    "lhln": {
+      "all": 514,
+      "left": 255,
+      "right": 259
+    },
+    "dn_steer": {
+      "all": 4,
+      "left": 2,
+      "right": 2
+    },
+    "dn_forward": {
+      "all": 2,
+      "left": 1,
+      "right": 1
+    },
+    "dn_backward": {
+      "all": 4,
+      "left": 2,
+      "right": 2
+    },
+    "dn_jump": {
+      "all": 2,
+      "left": 1,
+      "right": 1
+    },
+    "motor_feeding": {
+      "all": 110,
+      "left": 54,
+      "right": 56
+    }
+  }
+}
