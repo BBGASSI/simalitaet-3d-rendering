@@ -20,13 +20,16 @@ Integriert:
 from __future__ import annotations
 
 from dataclasses import dataclass, asdict
+import json
 import math
+from pathlib import Path
 from typing import Dict, List, Optional, Tuple
 
 import numpy as np
 
 from ..security_guards import (
     BIODIV_DB_PATH,
+    SCRATCH_ROOT,
     WOELFERSHEIM_DB_PATH,
     FlyLabSecurityGuard,
 )
@@ -78,6 +81,10 @@ class EcosystemSubstrate:
     regen_per_s: float
     canopy_cover: float     # Typische Schutzwirkung am Substrat
 
+    def __post_init__(self) -> None:
+        self._base_voc_strength: float = float(self.voc_strength)
+        self._base_regen_per_s: float = float(self.regen_per_s)
+
     def feed_and_consume(self, amount: float) -> float:
         taken = min(self.nutrients, amount)
         self.nutrients = max(0.0, self.nutrients - taken)
@@ -108,8 +115,18 @@ class Seestrasse43EcosystemWorld:
         self.guard = guard or FlyLabSecurityGuard()
         self.sim_time_s: float = 0.0
         self.daylight_uv_factor: float = 1.0  # Sonniger Frühsommernachmittag Wölfersheim
+        self.rain_mm_h: float = 0.0
+        self.temperature_c: float = 20.5
+        self.humidity_pct: float = 54.0
+        self.cloud_cover_pct: float = 18.0
+        self.wind_speed_mps: float = 0.36
+        self.rain_vis_factor: float = 1.0
+        self.season: str = "SOMMER"
+        self.clock_hour: float = 14.0
 
         self.woelfersheim_anchor, self.gbif_bird_records = self._load_readonly_empirical_anchors()
+        self.gbif_extended_records = self._load_extended_gbif_references()
+        self.dwd_weather_reference = self._load_readonly_dwd_snapshot()
         self.canopies: List[TreeCanopy] = self._build_canopies()
         self.perches: List[PerchNode] = self._build_perches()
         self.substrates: List[EcosystemSubstrate] = self._build_substrates()
@@ -155,6 +172,60 @@ class Seestrasse43EcosystemWorld:
                 con_b.close()
         return anchor, gbif
 
+    def _load_extended_gbif_references(self) -> Dict[str, Dict[str, object]]:
+        """Lädt weitere reale GBIF-Pflanzen- & Insektenreferenzen für Wölfersheim (Read-Only)."""
+        refs: Dict[str, Dict[str, object]] = {}
+        species_list = (
+            "Bombus pascuorum",
+            "Xylocopa violacea",
+            "Aeshna cyanea",
+            "Carabus auratus",
+            "Prunus padus",
+            "Sambucus ebulus",
+            "Glechoma hederacea",
+            "Eragrostis minor",
+            "Avena sativa",
+        )
+        if not BIODIV_DB_PATH.exists():
+            return refs
+        con_b = self.guard.open_readonly_sqlite(BIODIV_DB_PATH)
+        try:
+            for sp in species_list:
+                prof = con_b.execute(
+                    "SELECT taxon_key, species, vernacular_de, class_name, total_count, primary_habitat, licenses_used "
+                    "FROM species_profiles WHERE species = ?",
+                    (sp,),
+                ).fetchone()
+                if prof:
+                    refs[sp] = dict(prof)
+        finally:
+            con_b.close()
+        return refs
+
+    @staticmethod
+    def _load_readonly_dwd_snapshot() -> Dict[str, object]:
+        """Liest optionalen DWD-ICON-D2-Referenzanker aus SIMALITAET_REALDATA_RESEARCH (nur lesend)."""
+        snap = SCRATCH_ROOT / "SIMALITAET_REALDATA_RESEARCH" / "prototypes" / "latest_env_snapshot.json"
+        if not snap.exists():
+            return {"available": False, "source": "NONE"}
+        try:
+            data = json.loads(snap.read_text(encoding="utf-8"))
+            atm = data.get("atmosphere", {})
+            return {
+                "available": True,
+                "time": atm.get("time"),
+                "temp_c": atm.get("temp_c"),
+                "rh_pct": atm.get("rh_pct"),
+                "pressure_hpa": atm.get("pressure_hpa"),
+                "precip_mm": atm.get("precip_mm"),
+                "clouds_total_pct": atm.get("clouds_total_pct"),
+                "wind_kmh": atm.get("wind_kmh"),
+                "source": atm.get("source", "DWD_ICON_D2_LIVE"),
+                "license": atm.get("license", "CC BY 4.0"),
+            }
+        except Exception:
+            return {"available": False, "source": "READ_ERROR"}
+
     @staticmethod
     def _build_canopies() -> List[TreeCanopy]:
         return [
@@ -195,8 +266,17 @@ class Seestrasse43EcosystemWorld:
 
     def reset_dynamic_state(self) -> None:
         self.sim_time_s = 0.0
+        self.daylight_uv_factor = 1.0
+        self.rain_mm_h = 0.0
+        self.temperature_c = 20.5
+        self.humidity_pct = 54.0
+        self.cloud_cover_pct = 18.0
+        self.wind_speed_mps = 0.36
+        self.rain_vis_factor = 1.0
         for s in self.substrates:
             s.nutrients = s.max_nutrients
+            s.voc_strength = s._base_voc_strength
+            s.regen_per_s = s._base_regen_per_s
 
     def step(self, dt_s: float) -> None:
         self.sim_time_s += dt_s
@@ -531,6 +611,8 @@ class Seestrasse43EcosystemWorld:
             "world_bounds_m": {"min": list(self.BOUNDS_MIN), "max": list(self.BOUNDS_MAX)},
             "woelfersheim_anchor": self.woelfersheim_anchor,
             "gbif_woelfersheim_birds": self.gbif_bird_records,
+            "gbif_extended_references": self.gbif_extended_records,
+            "dwd_weather_reference": self.dwd_weather_reference,
             "canopies": [asdict(c) for c in self.canopies],
             "perches": [asdict(p) for p in self.perches],
             "substrates": [
@@ -543,4 +625,4 @@ class Seestrasse43EcosystemWorld:
                 }
                 for s in self.substrates
             ],
-  }
+        }
