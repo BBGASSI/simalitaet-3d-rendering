@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SIMALITÄT — Ökosystem-Observatorium (Seestraße 43)</title>
+  <link rel="stylesheet" href="/observatory_style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand-badge">SIMALITÄT</span>
+      <div>
+        <h1>Sichtbares Ökosystem-Observatorium</h1>
+        <small>Seestraße 43 (Wölfersheim) · FlyWire v783 · GBIF-Arten · Hydrologie &amp; Kausalketten</small>
+      </div>
+    </div>
+
+    <div class="controls-bar">
+      <label class="ctrl-group">
+        <span>Szenario</span>
+        <select id="selScenario">
+          <option value="REGENZYKLUS" selected>Regenzyklus (90–120 s)</option>
+          <option value="TROCKEN_KONTROLLE">Trocken-Kontrolle (0 mm/h)</option>
+          <option value="STARKREGEN">Starkregen-Ereignis</option>
+        </select>
+      </label>
+      <label class="ctrl-group">
+        <span>Jahreszeit</span>
+        <select id="selSeason">
+          <option value="FRUEHLING">Frühling</option>
+          <option value="SOMMER" selected>Sommer</option>
+          <option value="HERBST">Herbst</option>
+          <option value="WINTER">Winter</option>
+        </select>
+      </label>
+      <label class="ctrl-group ctrl-seed">
+        <span>Seed</span>
+        <input id="inpSeed" type="number" value="42" min="1" max="99999" />
+      </label>
+
+      <div class="btn-row">
+        <button id="btnPlayPause" class="btn btn-primary" title="Echtzeitlauf starten/pausieren">▶ Start</button>
+        <button id="btnStep5" class="btn">+5 s</button>
+        <button id="btnRunCycle" class="btn btn-accent" title="Kompletten 90-s-Regenzyklus deterministisch durchrechnen">🌧 90s Regenzyklus</button>
+        <button id="btnReset" class="btn">↺ Reset</button>
+      </div>
+    </div>
+
+    <div class="status-pills">
+      <div class="pill" id="pillClock">🕒 13:30 (t=0.0 s)</div>
+      <div class="pill" id="pillWeather">☀ KLAR · 0.0 mm/h · 20.5 °C</div>
+      <div class="pill pill-mono" id="pillPerf">12.0 ms/Tick · SHA …</div>
+    </div>
+  </header>
+
+  <main class="workspace">
+    <!-- Linke Schichten- & Objektliste -->
+    <aside class="sidebar-left">
+      <section class="panel-box">
+        <h2>Informationsschichten</h2>
+        <div class="layer-list">
+          <label><input type="checkbox" id="layerWeather" checked /> Wetter &amp; Regen</label>
+          <label><input type="checkbox" id="layerSoil" checked /> Bodenfeuchte, Pfützen &amp; Fluss</label>
+          <label><input type="checkbox" id="layerPlants" checked /> Vegetation &amp; Vitalität</label>
+          <label><input type="checkbox" id="layerSubstrates" checked /> Lebensräume / Substrate</label>
+          <label><input type="checkbox" id="layerAnimals" checked /> Tiere (Fliegen, Hummeln, Käfer, Vögel)</label>
+          <label><input type="checkbox" id="layerChanges" checked /> Veränderungs-Ringe (Δ &lt; 6 s)</label>
+          <label><input type="checkbox" id="layerPopulations" checked /> Populations-Overlay</label>
+        </div>
+      </section>
+
+      <section class="panel-box">
+        <h2>Legende &amp; Datenherkunft</h2>
+        <div class="legend-item"><span class="swatch sw-dry"></span> Trockener Boden (~10 % Vol.)</div>
+        <div class="legend-item"><span class="swatch sw-wet"></span> Feuchter Boden (&gt;32 % Vol.)</div>
+        <div class="legend-item"><span class="swatch sw-puddle"></span> Pfütze (&gt;1 mm) + Fließpfeil</div>
+        <div class="legend-item"><span class="swatch sw-change"></span> Neue Änderung (&lt; 6 s)</div>
+        <div class="legend-badges">
+          <span class="badge orig-model">MODELLWERT</span>
+          <span class="badge orig-fly">FLYWIRE v783</span>
+          <span class="badge orig-gbif">GBIF WÖLFERSHEIM</span>
+          <span class="badge orig-dwd">DWD REFERENZ</span>
+        </div>
+      </section>
+
+      <section class="panel-box grow-scroll">
+        <h2>Klickbare Objekte</h2>
+        <div id="quickObjectList" class="quick-list"></div>
+      </section>
+    </aside>
+
+    <!-- Kartenansicht & Zeitregler -->
+    <section class="center-stage">
+      <div class="canvas-wrap">
+        <canvas id="worldCanvas"></canvas>
+        <div id="popOverlay" class="pop-overlay"></div>
+        <div id="canvasTooltip" class="canvas-tooltip hidden"></div>
+      </div>
+
+      <div class="timeline-bar">
+        <div class="scrub-row">
+          <span class="tl-label">Zeitpunkt: <strong id="lblTime">0.0 s</strong> (<span id="lblTimeMode">LIVE</span>)</span>
+          <input id="scrubTime" type="range" min="0" max="0" step="1" value="0" />
+          <span class="tl-max" id="lblMaxTime">0 s</span>
+        </div>
+
+        <div class="compare-row">
+          <label class="cmp-toggle">
+            <input type="checkbox" id="chkCompareMode" />
+            <span>Vorher-Nachher-Vergleich auf Karte</span>
+          </label>
+          <label class="cmp-slider">
+            <span>Vorher (t1): <strong id="lblT1">0 s</strong></span>
+            <input id="scrubT1" type="range" min="0" max="0" step="1" value="0" />
+          </label>
+          <label class="cmp-slider">
+            <span>Nachher (t2): <strong id="lblT2">0 s</strong></span>
+            <input id="scrubT2" type="range" min="0" max="0" step="1" value="0" />
+          </label>
+        </div>
+      </div>
+    </section>
+
+    <!-- Rechter Inspektor, Kausalketten & Vergleich -->
+    <aside class="inspector-right">
+      <div class="tab-bar">
+        <button class="tab-btn active" data-tab="tabInspector">Objekt-Inspektor</button>
+        <button class="tab-btn" data-tab="tabCausal">Ursache &amp; Wirkung</button>
+        <button class="tab-btn" data-tab="tabCompare">Vorher / Nachher</button>
+      </div>
+
+      <div id="tabInspector" class="tab-content active">
+        <div id="inspectorBody">
+          <p class="muted">Klicke ein Bodenfeld, eine Pflanze, ein Substrat oder ein Tier auf der Karte an.</p>
+        </div>
+      </div>
+
+      <div id="tabCausal" class="tab-content">
+        <div class="filter-row">
+          <label>Filter:
+            <select id="selEventFilter">
+              <option value="ALL">Alle Ereignisse</option>
+              <option value="WEATHER">Wetter &amp; Regen</option>
+              <option value="HYDROLOGY">Boden, Pfützen &amp; Wasser</option>
+              <option value="VEGETATION">Pflanzen</option>
+              <option value="HABITAT">Lebensräume / Substrate</option>
+              <option value="INSECT">Insekten (Fliegen/Hummeln/Käfer)</option>
+              <option value="BIRD">Vögel</option>
+              <option value="NON_REACTION">Ausbleibende Reaktionen</option>
+            </select>
+          </label>
+          <span id="lblEventCount" class="pill-mini">0</span>
+        </div>
+        <div id="causalChainBox" class="chain-box hidden"></div>
+        <div id="eventFeed" class="event-feed"></div>
+      </div>
+
+      <div id="tabCompare" class="tab-content">
+        <div class="compare-actions">
+          <button id="btnCompareDry" class="btn btn-primary">Regen vs. Trocken-Kontrolle (90 s)</button>
+        </div>
+        <div id="dryComparisonBox" class="dry-box hidden"></div>
+        <div id="diffTableBox"></div>
+        <div id="provenanceBox" class="prov-box"></div>
+      </div>
+    </aside>
+  </main>
+
+  <script src="/observatory_app.js"></script>
+</body>
+                                                          </html>

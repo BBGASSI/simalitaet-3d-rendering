@@ -11,4 +11,8 @@ __all__ = [
     "bird_models",
     "simulation",
     "visualization",
+    "environment_dynamics",
+    "causal_tracker",
+    "observatory_engine",
+    "observatory_server",
 ]

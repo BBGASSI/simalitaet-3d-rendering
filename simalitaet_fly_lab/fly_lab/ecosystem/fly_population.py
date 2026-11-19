@@ -123,6 +123,9 @@ class FlyPopulationEngine:
         self.state_label: List[str] = ["INACTIVE"] * self.max_slots
         self.total_escapes = np.zeros(self.max_slots, dtype=np.int32)
         self.total_feeding_s = np.zeros(self.max_slots, dtype=np.float32)
+        self.last_orn_ester = np.zeros(self.max_slots, dtype=np.float32)
+        self.last_lc4 = np.zeros(self.max_slots, dtype=np.float32)
+        self.last_dnp01 = np.zeros(self.max_slots, dtype=np.float32)
 
         # Echtzeit-LIF-Zustandsmatrix (N_neurons, max_slots) für gebündelte FlyWire-Propagation
         self.v_mv = np.full((sub.n_neurons, self.max_slots), self.V_REST, dtype=np.float32)
@@ -185,6 +188,9 @@ class FlyPopulationEngine:
         self.state_label[slot] = "FORAGING"
         self.total_escapes[slot] = 0
         self.total_feeding_s[slot] = 0.0
+        self.last_orn_ester[slot] = 0.0
+        self.last_lc4[slot] = 0.0
+        self.last_dnp01[slot] = 0.0
         self.v_mv[:, slot] = self.V_REST
         self.r_rate[:, slot] = 0.0
         self.total_spawned += 1
@@ -427,6 +433,9 @@ class FlyPopulationEngine:
             r_s[p_pools["dn_steer"]["left"], :].mean(axis=0) - r_s[p_pools["dn_steer"]["right"], :].mean(axis=0)
         )
         orn_mean = r_s[p_pools["orn_ester"]["all"], :].mean(axis=0)
+        self.last_orn_ester[slots] = orn_mean
+        self.last_lc4[slots] = lc4_mean
+        self.last_dnp01[slots] = dnp01_mean
 
         dt_f = np.float32(dt_s)
         self.age_s[slots] += dt_f
@@ -504,6 +513,29 @@ class FlyPopulationEngine:
             base_dir = np.where(bd_norm > 1e-5, base_dir / np.maximum(bd_norm, np.float32(1e-5)), base_dir)
             desired_vel[is_foraging] = base_dir * np.float32(0.58) + wind_all[is_foraging] * np.float32(0.75)
             met_cost[is_foraging] = np.float32(0.024 * dt_s)
+
+        # Wetter- & Tageslichtkopplung (nur aktiv bei Regen oder Dämmerung -> bit-identisch bei Sonne/trocken)
+        rain_cur = float(getattr(world, "rain_mm_h", 0.0))
+        uv_cur = float(getattr(world, "daylight_uv_factor", 1.0))
+        if rain_cur > 0.05 or uv_cur < 0.999:
+            out_mask = ~in_house_all
+            if np.any(out_mask):
+                out_for = out_mask & is_foraging
+                if rain_cur > 0.05 and np.any(out_for):
+                    refuges = np.array(
+                        [c.center for c in world.canopies] + [list(world.HOUSE_FLY_PORTAL_CENTER)],
+                        dtype=np.float32,
+                    )
+                    fp_of = fp_all[out_for]
+                    d_ref = refuges[None, :, :] - fp_of[:, None, :]
+                    dist_ref = np.linalg.norm(d_ref, axis=-1) + np.float32(1e-4)
+                    best_r = np.argmin(dist_ref, axis=1)
+                    u_ref = d_ref[np.arange(len(fp_of)), best_r] / dist_ref[np.arange(len(fp_of)), best_r, None]
+                    pull = np.float32(min(0.55, 0.045 * rain_cur))
+                    desired_vel[out_for] = (1.0 - pull) * desired_vel[out_for] + pull * (u_ref * np.float32(0.72))
+                    desired_vel[out_for, 2] -= np.float32(0.045 * min(12.0, rain_cur))
+                elif uv_cur < 0.999 and np.any(out_for):
+                    desired_vel[out_for] *= np.float32(max(0.45, 0.55 + 0.45 * uv_cur))
 
         # Trägheitsgeglättete Bewegung & Hindernisprüfung (vektorisiert)
         new_vel = (np.float32(0.65) * vel_all + np.float32(0.35) * desired_vel).astype(np.float32)
