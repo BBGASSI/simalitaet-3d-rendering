@@ -329,6 +329,9 @@ class BirdAgent:
             np.where(fp_all[:, 2] <= 1.5, p.ground_contrast_bonus, p.open_sky_bonus),
         )
         salience = (p.acuity_scale / np.maximum(0.32, dist)) * los_arr * niche_bonus * motion_boost * self.vision_gain
+        rain_vis = float(getattr(world, "rain_vis_factor", 1.0))
+        if rain_vis < 0.999:
+            salience = salience * rain_vis
         if self.target_slot is not None:
             salience = np.where(fly_slots == int(self.target_slot), salience * 1.38, salience)
 
@@ -494,9 +497,11 @@ class BirdAgent:
                 self.r_pursuit = 0.0
                 self.r_strike = 0.0
 
-                # Rückkehr zur Sitzwarte bei Meisen (oder satter Rauchschwalbe) bzw. freier Streifenflug
+                # Rückkehr zur Sitzwarte bei Meisen (oder satter/verregneter Rauchschwalbe) bzw. freier Streifenflug
+                rain_cur = float(getattr(world, "rain_mm_h", 0.0))
                 should_rest = (
                     (p.hunting_strategy != "AERIAL_HAWKING_PN" and self.rng.random() < 0.025)
+                    or (p.hunting_strategy == "AERIAL_HAWKING_PN" and rain_cur >= 6.5)
                     or satiated
                     or e_frac < 0.14
                 )
@@ -608,6 +613,11 @@ class BirdAgent:
                     self.strike_min_dist = min(self.strike_min_dist, d_now)
         else:
             power_w = p.bmr_perch_w
+
+        # Regen-Flugwiderstand erhöht Energieverbrauch bei aktivem Flug (0 bei trockenem Wetter)
+        rain_cur_e = float(getattr(world, "rain_mm_h", 0.0))
+        if rain_cur_e > 0.05 and self.state != "PERCHING":
+            power_w *= (1.0 + 0.022 * min(12.0, rain_cur_e))
 
         # 6. Energieverbrauch & Zonenstatistik
         de_j = power_w * dt_s
